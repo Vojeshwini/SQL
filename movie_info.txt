@@ -1,0 +1,89 @@
+CREATE TABLE movie_info(
+movie_id int NOT NULL UNIQUE,
+movies_name Varchar(20) NOT NULL UNIQUE,
+movie_language VARCHAR(20),
+movie_director VARCHAR(20) NOT NULL UNIQUE,
+movie_producer VARCHAR(20) NOT NULL UNIQUE,
+hero VARCHAR(20),
+heroine VARCHAR(20),
+trailor_release_date  DATE NOT NULL,
+movie_release_date DATE UNIQUE,
+ratings INT NOT NULL );
+
+
+INSERT INTO movie_info VALUES(1,'Girikanya', 'Kannada','Bhagavan','Dwarakanth','Rajkumar','Jayamala','1977-01-19','1977-03-12',5),
+(2,'Love Moctail','Kannada','Darling Krishna','Milana','Darling Krishna','Milana Nagaraj','2021-02-13','2021-04-20',4),
+(3,'Drishyam','Malayalam',' Jeethu Joseph','Antony Perumbavoor','Mohanlal','Meena','2003-01-16','2023-12-12',3),
+(4,'Andheri','Malayalam','Anwar Rasheed​','Sophia ','Jayasurya','Isha ','2015-04-17','2022-06-12',4),
+(5,'Mungaru Male','Kannada','Harish','Deepak','Ganesh','Pooja Gandhi','2003-01-16','2008-04-14',4),
+
+(6,'Appu','Kannada','Keerthi','Prakash','Punith Rajkumar','Rakshitha','2015-04-17','2012-05-08',4),
+
+(7,'Disney','English','Leo','Olavia','Gem','Maggie Gyllenhaal','2003-01-16','2014-07-20',4),
+(8,'Bangalore Days','Malayalam','Appachan','Soubin','Mohanlal','Kalyani','2015-04-17','2003-01-16',5),
+(9,'Titanic','English','Cameron','Landau','Leonardo DiCaprio','Kate Winslet','2014-03-20','2014-08-16',4),
+(10,'KGF','Kannada','Lokesh','Jashwanth','Yash','Shilpa','2003-01-16','2001-06-24',4),
+(11,'Vikram','Tamil','Kanagaraj','Kamal ','Kamal','Gayathrie','2015-04-17','1999-03-16',4),
+(12,'Charlie','Malayalam','Prakkat','Madhu','Nivin','Isha','2014-03-20','2022-02-22',3),
+(13,'Interstellar','English','Nolan','Charles Roven','Thomas','Maggie Gyllenhaal','1999-03-16','2022-02-18',4),
+(14,'Kotigobba','Kannada','Manish','Barath','Sudeep','Rachitha','2003-01-16','2021-01-12',4),
+(15,'Nayattu','Malayalam','Pothan','Puthren','Nivin','Isha','1999-03-16','2023-12-30',5),
+(16,'Jailer','Tamil','Mani','Ratnam','Kamal','Gayathrie','2003-01-14','2022-06-18',4),
+(17,'RRR','Telugu','Rajamouli','Danayya','Charan','Alia Bhatt','2015-04-17','2003-01-14',4),
+(18,'Virus','Malayalam','Joseph','Anjali','Nivin','Parvathy','1999-03-16','2014-03-20',3),
+(19,'Jawan','Hindi','Gauri','Atlee','','Alia Bhatt','1999-03-16','2022-02-26',4),
+(20,'Gadar','Hindi','Anil','Sharma','Ranbir','Tabu','2022-02-26','2001-06-02',4);
+
+select * from movie_info;
+
+ALTER TABLE  movie_info ADD COLUMN movie_type VARCHAR(20);
+
+
+UPDATE movie_info SET movie_type='Family'where movie_id=1;
+UPDATE movie_info SET movie_type='Comedy'where movie_id=2;
+UPDATE movie_info SET movie_type='Action'where movie_id=3;
+UPDATE movie_info SET movie_type='Animation'where movie_id=4;
+UPDATE movie_info SET movie_type='War'where movie_id=5;
+UPDATE movie_info SET movie_type='Mystery'where movie_id=6;
+UPDATE movie_info SET movie_type='Comedy'where movie_id=7;
+UPDATE movie_info SET movie_type='Action'where movie_id=8;
+UPDATE movie_info SET movie_type='Action'where movie_id=9;
+UPDATE movie_info SET movie_type='Horror'where movie_id=10;
+UPDATE movie_info SET movie_type='Comedy'where movie_id=11;
+UPDATE movie_info SET movie_type='Faamily'where movie_id=12;
+UPDATE movie_info SET movie_type='Family'where movie_id=13;
+UPDATE movie_info SET movie_type='Western'where movie_id=14;
+UPDATE movie_info SET movie_type='Action'where movie_id=15;
+UPDATE movie_info SET movie_type='Action'where movie_id=16;
+UPDATE movie_info SET movie_type='Action'where movie_id=17;
+UPDATE movie_info SET movie_type='Family'where movie_id=18;
+UPDATE movie_info SET movie_type='Western'where movie_id=19;
+UPDATE movie_info SET movie_type='Horror'where movie_id=20;
+UPDATE movie_info SET movie_type='Horror'where movie_id=1;
+
+select * from movie_info;
+
+SELECT count(ratings) as no_of_ratings from movie_info where ratings=4;
+SELECT count(hero) as no_of_ratings from movie_info where movie_id between 2 and 5;
+SELECT count(movies_name) as name from movie_info where movie_id in(2,3,4,5,6);
+SELECT count(movie_type) as no_of_ratings from movie_info where movie_id in(2,3,4,5,6);
+
+SELECT sum(ratings) as ratings from movie_info;
+SELECT sum(ratings) as ratings from movie_info where movie_id between 2 and 8; 
+
+SELECT AVG(ratings) as avg_rate FROM movie_info WHERE hero= 'Nivin';
+SELECT AVG(ratings) as avg_rate FROM movie_info WHERE heroine='Isha' and hero='Nivin';
+
+Select min(ratings) as min_ratings From movie_info WHERE movie_language='Kannada';
+Select min(ratings) as max_ratings From movie_info WHERE hero='Nivin' ;
+Select max(ratings) as max_ratings From movie_info WHERE movie_language='Kannada';
+Select max(ratings) as max_ratings From movie_info WHERE movie_language='English' ;
+Select max(ratings) as max_ratings From movie_info WHERE hero='Nivin' ;
+
+
+
+
+select * from movie_info;
+Select movies_name,movies_name,movie_language,movie_director from movie_info group by movies_name;
+
+Select sum(ratings) as rate from movie_info group by movie_id Having rate<5;
